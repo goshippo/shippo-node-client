@@ -2,15 +2,15 @@
   "name": "shippo",
   "version": "0.0.1",
   "description": "Shippo API wrapper",
-  "homepage": "https://github.com/tobstar87/shippo-node",
+  "homepage": "https://github.com/tobstar87/shippo-node-client",
   "author": "Tobias Schottdorf",
   "contributors": [
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/tobstar87/shippo-node.git"
+    "url": "git://github.com/tobstar87/shippo-node-client.git"
   },
-  "bugs:": "https://github.com/tobstar87/shippo-node/issues",
+  "bugs:": "https://github.com/tobstar87/shippo-node-client/issues",
   "engines": {
     "node": ">= v0.8.0"
   },
