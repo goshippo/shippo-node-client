@@ -72,6 +72,9 @@ shippo.addresses.list().then(function(addresses) {
 });
 ```
 
+## Credits
+
+This project was *heavily* influenced by the excellent [stripe-node](https://github.com/stripe/stripe-node).
 ## Author
 
 Maintained by [Tobias Schottdorf](https://github.com/tobstar87). Happy to see
