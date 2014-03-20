@@ -1,0 +1,25 @@
+{
+  "name": "shippo",
+  "version": "0.0.1",
+  "description": "Shippo API wrapper",
+  "homepage": "https://github.com/tobstar87/shippo-node",
+  "author": "Tobias Schottdorf",
+  "contributors": [
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tobstar87/shippo-node.git"
+  },
+  "bugs:": "https://github.com/tobstar87/shippo-node/issues",
+  "engines": {
+    "node": ">= v0.8.0"
+  },
+  "main": "lib/shippo.js",
+  "devDependencies": {
+  },
+  "dependencies": {
+    "when": "~2.4.0"
+  },
+  "scripts": {
+  }
+}
