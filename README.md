@@ -2,6 +2,23 @@
 
 ## API Overview
 
+-- Installation:
+You can install this package by running the command :
+```shell
+	npm install shippo
+```
+This means, you don't actually have to download this repository, but you can also clone this repository into your project if you wish to make modifications to the wrapper.
+
+-- Requirements:
+For the test cases the following packages are required:
+```js
+	npm install mocha
+	npm install chai
+	npm install when
+	npm install mocha-as-promised
+	npm install chai-as-promised
+```
+
 Every resource is accessed via your `shippo` instance:
 
 ```js
@@ -77,5 +94,5 @@ shippo.addresses.list().then(function(addresses) {
 This project was *heavily* influenced by the excellent [stripe-node](https://github.com/stripe/stripe-node).
 ## Author
 
-Maintained by [Tobias Schottdorf](https://github.com/tobstar87). Happy to see
+Maintained by support@goshippo.com . Happy to see
 contributions and feedback - fork away!

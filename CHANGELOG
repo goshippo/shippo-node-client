@@ -1,2 +1,12 @@
+1.0.0 Aug 25th, 2014
+ - changed class names to singular
+ - Added extensive unit tests
+ - added optional parameter <currency> for shipment.rates()
+ - added optional parameters <size> and <page> for list method
+ - added validate method to address
+ - added manifest, rate, and refund classes
+ - added “s” to parcel class
+ - made fix to retrieve method 
+ 
 0.0.1 Mar 21th, 2014
  - Initial version, HEAVILY inspired by the excellent stripe-node 
