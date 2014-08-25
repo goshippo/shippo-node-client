@@ -1,6 +1,6 @@
 {
   "name": "shippo",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Shippo API wrapper",
   "homepage": "https://github.com/tobstar87/shippo-node-client",
   "author": "Tobias Schottdorf",
@@ -21,5 +21,6 @@
     "when": "~2.4.0"
   },
   "scripts": {
+    "test": "mocha"
   }
 }
