@@ -4,8 +4,7 @@
   "description": "Shippo API wrapper",
   "homepage": "https://github.com/tobstar87/shippo-node-client",
   "author": "Tobias Schottdorf",
-  "contributors": [
-  ],
+  "contributors": ["Eyoel Asfaw"],
   "repository": {
     "type": "git",
     "url": "git://github.com/tobstar87/shippo-node-client.git"

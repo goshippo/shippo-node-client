@@ -1,5 +1,10 @@
+/** This example demonstrates how to purchase a label for an international shipment.
+ Creating domestic shipment would follow a similiar proccess but would not require
+ the creation of CustomsItems and CustomsDeclaration objects.**/
+
+
 // replace <USERNAME> and <PASSWORD> with your credentials
-var shippo = require('./shippo.js')('<USERNAME>', '<PASSWORD>');
+var shippo = require('shippo')('<USERNAME>', '<PASSWORD>');
 
 var addressFrom  = {
 	"object_purpose":"PURCHASE",
@@ -44,12 +49,11 @@ var parcel = {
 var customsItem = {
 	"description":"T-Shirt",
 	"quantity":2,
-	"net_weight":"400",
-	"mass_unit":"g",
+	"net_weight":"0.3",
+	"mass_unit":"lb",
 	"value_amount":"20",
 	"value_currency":"USD",
 	"origin_country":"US",
-	"tariff_number":"",
 }
 
 // Creating the CustomsDeclaration
