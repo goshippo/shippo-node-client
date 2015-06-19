@@ -1,10 +1,12 @@
-/** This example demonstrates how to purchase a label for an international shipment.
- Creating domestic shipment would follow a similiar proccess but would not require
- the creation of CustomsItems and CustomsDeclaration objects.**/
+/** 
+This example demonstrates how to purchase a label for an international shipment.
+Creating domestic shipment would follow a similiar proccess but would not require
+the creation of CustomsItems and CustomsDeclaration objects.
+**/
 
 
-// replace <USERNAME> and <PASSWORD> with your credentials
-var shippo = require('shippo')('<USERNAME>', '<PASSWORD>');
+// replace <YOUR_PRIVATE_KEY> with your ShippoToken key
+var shippo = require('shippo')('<YOUR_PRIVATE_KEY>');
 
 var addressFrom  = {
 	"object_purpose":"PURCHASE",
