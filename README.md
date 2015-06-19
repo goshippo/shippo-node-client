@@ -1,9 +1,8 @@
 #Shippo Node.js API wrapper
 
-Shippo provides a shipping API that integrates with various shipping providers such as USPS, UPS, and Fedex. 
+Shippo is a shipping API that connects you with multiple shipping providers (such as USPS, UPS, and Fedex) through one interface, and offers you great discounts on shipping rates.
 
 Don't have an account? Sign up at https://goshippo.com/
-
 
 
 ## Installation:
@@ -24,12 +23,12 @@ The shippo Node.js has the following dependencies:
 Every resource is accessed via your `shippo` instance:
 
 ```js
-    var shippo = require('shippo')('<USERNAME>', '<PASSWORD>');
+    var shippo = require('shippo')('<YOUR_PRIVATE_KEY>');
 ```
 The snippet below demonstrates how to create an address object. check examples.js for more detailed example for generating a shipping label:
 
 ```js
-    var shippo = require('shippo')('<USERNAME>', '<PASSWORD>');
+    var shippo = require('shippo')('<YOUR_PRIVATE_KEY>');
     
     shippo.address.create({
           'object_purpose' : 'PURCHASE',
