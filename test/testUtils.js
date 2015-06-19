@@ -3,17 +3,15 @@
 // NOTE: testUtils should be require'd before anything else in each spec file!
 
 // Ensure we are using the 'as promised' libs before any tests are run:
-require('mocha-as-promised')();
-require('chai').use(require('chai-as-promised'));
+
+require('chai');
 
 var when = require('when');
 
 var utils = module.exports = {
 
   getUserShippoKey: function() {
-    var key = process.env.STRIPE_TEST_API_KEY || ('unittest', 'unittest');
-
-    return key;
+    return process.env.SHIPPO_TEST_API_KEY || ('unittest');
   },
 
   getSpyableShippo: function() {
