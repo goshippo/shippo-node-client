@@ -1,4 +1,4 @@
-1.1.0 Jun 19th, 2015
+1.1.1 Jun 19th, 2015
  - added support for CarrierAccounts
  - changed authentication to use ShippoToken (from http basic auth)
 
