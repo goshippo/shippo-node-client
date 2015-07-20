@@ -1,3 +1,7 @@
+1.1.0 Jun 19th, 2015
+ - added support for CarrierAccounts
+ - changed authentication to use ShippoToken (from http basic auth)
+
 1.0.0 Aug 25th, 2014
  - changed class names to singular
  - Added extensive unit tests
