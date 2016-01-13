@@ -67,7 +67,8 @@ shippo.customsdeclaration.create({
 	"certify": true,
 	"certify_signer": "Laura Behrens Wu",
 	"items": [customsItem],
-}).then(function(customs_declaration){
+})
+.then(function(customs_declaration) {
 	console.log("customs Declaration : %s", JSON.stringify(customs_declaration, null, 4));
 	// Creating the shipment object. In this example, the objects are directly passed to the
 	// shipment.create method, Alternatively, the Address and Parcel objects could be created
@@ -86,45 +87,37 @@ shippo.customsdeclaration.create({
 }, function(err) {
 	// Deal with an error
 	console.log("There was an error creating customs declaration: %s", err);
-}).then(function(shipment){
+})
+.then(function(shipment) {
 	console.log("shipment : %s", JSON.stringify(shipment, null, 4));
-	shippo.shipment.rates(shipment.object_id).then(function(rates){
-	console.log("rates : %s", JSON.stringify(rates, null, 4));
-	// Get the first rate in the rates results for demo purposes.
-	rate = rates.results[0];
-	// Purchase the desired rate, this will be asynchronous
-	return shippo.transaction.create({"rate": rate.object_id});
-
+	shippo.shipment.rates(shipment.object_id)
+	.then(function(rates) {
+		console.log("rates : %s", JSON.stringify(rates, null, 4));
+		// Get the first rate in the rates results for demo purposes.
+		rate = rates.results[0];
+		// Purchase the desired rate
+		return shippo.transaction.create({"rate": rate.object_id, "async": false})
 	}, function(err) {
 		// Deal with an error
 		console.log("There was an error retrieving rates : %s", err);
-	}).then(function(transaction){
-		console.log("transaction : %s", JSON.stringify(transaction, null, 4));
-		//Wait for transaction to be proccessed
-		transactionReady(transaction,0);
+	})
+	.then(function(transaction) {
+			console.log("transaction : %s", JSON.stringify(transaction, null, 4));
+			//Wait for transaction to be proccessed
+			// print label_url and tracking_number
+			if(transaction.object_status == "SUCCESS") {
+				console.log("Label URL: %s", transaction.label_url);
+				console.log("Tracking Number: %s", transaction.tracking_number);
+			}else{
+				//Deal with an error with the transaction
+				console.log("Message: %s", transaction.messages);
+			}
 
 	}, function(err) {
 		// Deal with an error
 		console.log("There was an error creating transaction : %s", err);
 	});
-	//Wait for transaction to be proccessed
-	function transactionReady(transaction,attempts){
-		if ((transaction.object_status == "QUEUED" || transaction.object_status == "WAITING") && attempts < 10){
-			shippo.transaction.retrieve(transaction.object_id).then(function(val){
-				transactionReady(val,attempts+1);
-			});
-		}else{
-			// print label_url and tracking_number
-			if(transaction.object_status == "SUCCESS"){
-				console.log("Label URL: %s",transaction.label_url);
-				console.log("Tracking Number: %s",transaction.tracking_number);
-			}else{
-				//Deal with an error with the transaction
-				console.log("Message: %s",transaction.messages);
-			}
-		}
-	}
-},function(err){
+},function(err) {
 	// Deal with an error
 	console.log("There was an error creating shipment: %s", err);
 });
