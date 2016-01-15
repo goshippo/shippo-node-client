@@ -68,8 +68,8 @@ shippo.customsdeclaration.create({
 	"certify_signer": "Laura Behrens Wu",
 	"items": [customsItem],
 })
-.then(function(customs_declaration) {
-	console.log("customs Declaration : %s", JSON.stringify(customs_declaration, null, 4));
+.then(function(customsDeclaration) {
+	console.log("customs Declaration : %s", JSON.stringify(customsDeclaration, null, 4));
 	// Creating the shipment object. In this example, the objects are directly passed to the
 	// shipment.create method, Alternatively, the Address and Parcel objects could be created
 	// using address.create(..) and parcel.create(..) functions respectively.
@@ -80,7 +80,7 @@ shippo.customsdeclaration.create({
 		"address_to": addressTo,
 		"parcel": parcel,
 		"submission_type": "DROPOFF",
-		"customs_declaration": customs_declaration.object_id,
+		"customs_declaration": customsDeclaration.object_id,
 		"async": false
 	})
 
