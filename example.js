@@ -103,7 +103,6 @@ shippo.customsdeclaration.create({
 	})
 	.then(function(transaction) {
 			console.log("transaction : %s", JSON.stringify(transaction, null, 4));
-			//Wait for transaction to be proccessed
 			// print label_url and tracking_number
 			if(transaction.object_status == "SUCCESS") {
 				console.log("Label URL: %s", transaction.label_url);
