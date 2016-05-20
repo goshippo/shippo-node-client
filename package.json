@@ -1,8 +1,19 @@
 {
-  "name": "shippo",
+  "name": "shippo/shippo-node",
   "version": "1.1.1",
-  "description": "Shippo API wrapper",
+  "description": "A Node library for connecting with multiple carriers (FedEx, UPS, USPS) using Shippo.",
   "homepage": "https://github.com/goshippo/shippo-node-client",
+  "keywords": [
+    "ups",
+    "usps",
+    "fedex",
+    "dhl",
+    "uber",
+    "shyp",
+    "shipping",
+    "tracking",
+    "address"
+  ],
   "author": "Tobias Schottdorf",
   "contributors": [
     "Eyoel Asfaw",
