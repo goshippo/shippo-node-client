@@ -1,4 +1,6 @@
 #Shippo Node.js API wrapper
+[![npm version](https://badge.fury.io/js/shippo.svg)](https://badge.fury.io/js/shippo)
+[![Build Status](https://travis-ci.org/goshippo/shippo-node-client.svg?branch=add-travis-ci)](https://travis-ci.org/goshippo/shippo-node-client)
 
 Shippo is a shipping API that connects you with multiple shipping carriers (such as USPS, UPS, DHL, Canada Post, Australia Post, UberRUSH and many [others](https://goshippo.com/shipping-carriers/)) through one interface.
 
