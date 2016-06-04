@@ -1,3 +1,6 @@
+1.1.2 Jun 3rd, 2016
+ - add Travis CI and badges
+
 1.1.1 Jun 19th, 2015
  - added support for CarrierAccounts
  - changed authentication to use ShippoToken (from http basic auth)
