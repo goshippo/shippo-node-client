@@ -1,6 +1,6 @@
 {
   "name": "shippo",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "A node client for connecting with over 20 shipping carriers and consolidators via a single integration using Shippo API. Support for shipping rates, buying and printing labels, tracking as well as some carrier specific functionality such as signature required, adult signature confirmation, certified mail, delivery confirmation and many others.",
   "homepage": "https://github.com/goshippo/shippo-node-client",
   "keywords": [
@@ -15,13 +15,14 @@
     "tracking",
     "address"
   ],
-  "author": "Shippo <support@goshippo.com> (https://goshippo.com/)",
+  "author": "Shippo <tech-admin@goshippo.com> (https://goshippo.com/)",
   "contributors": [
     "Tobias Schottdorf",
     "Eyoel Asfaw",
     "Wissam Jarjoui",
     "Subhi Beidas",
-    "Matthieu Nowicki"
+    "Matthieu Nowicki",
+    "Jason Smith"
   ],
   "repository": {
     "type": "git",
