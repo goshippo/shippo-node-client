@@ -34,7 +34,7 @@ var addressTo = {
 	"country":"GB", //iso2 country code
 	"phone":"+1 555 341 9393",
 	"email":"mrhippo@goshippo.com",
-	"metadata" : "Hippos dont lie"
+	"metadata" : "Hippo T-Shirt Order #1043"
 }
 
 // parcel object dict
@@ -62,10 +62,9 @@ var customsItem = {
 // (CustomsDeclaration are NOT required for domestic shipments)
 shippo.customsdeclaration.create({
 	"contents_type": "MERCHANDISE",
-	"contents_explanation": "T-Shirt purchase",
 	"non_delivery_option": "RETURN",
 	"certify": true,
-	"certify_signer": "Laura Behrens Wu",
+	"certify_signer": "Mr. Hippo",
 	"items": [customsItem],
 })
 .then(function(customsDeclaration) {
@@ -79,7 +78,6 @@ shippo.customsdeclaration.create({
 		"address_from": addressFrom,
 		"address_to": addressTo,
 		"parcel": parcel,
-		"submission_type": "DROPOFF",
 		"customs_declaration": customsDeclaration.object_id,
 		"async": false
 	})
