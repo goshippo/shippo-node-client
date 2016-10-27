@@ -28,7 +28,7 @@ var utils = module.exports = {
 
         // Override each _request method so we can make the params
         // avaialable to consuming tests (revealing requests made on
-        // REQUESTS and latestST_REQUEST):
+        // REQUESTS and LAST_REQUEST):
         shippoInstance[i]._request = function(method, url, data, auth, cb) {
           var req = shippoInstance.LAST_REQUEST = {
             method: method,
