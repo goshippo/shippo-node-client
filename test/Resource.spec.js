@@ -9,7 +9,7 @@ describe('Resourcetest', function() {
 
         it('tests that the version header is properly set', function() {
             shippo.set('version', 'sample_version')
-            expect('sample_version').to.equal(shippo.address._get_headers('mock_request')['Shippo-API-Version']);
+            expect(shippo.address._get_headers('mock_request')['Shippo-API-Version']).to.equal('sample_version');
         });
 
     });
