@@ -5,11 +5,11 @@ var expect = require('chai').expect;
 
 describe('Tracking Resource', function() {
   
-  describe('track', function() {
+  describe('status', function() {
 
     it('Sends the correct request', function() {
 
-      shippo.tracking.track('carrierFoo', 'trackingNumberFoo');
+      shippo.track.status('carrierFoo', 'trackingNumberFoo');
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
         url: '/v1/tracks/carrierFoo/trackingNumberFoo/',
@@ -24,7 +24,7 @@ describe('Tracking Resource', function() {
 
     it('Sends the correct request', function() {
 
-      shippo.tracking.create({
+      shippo.track.create({
 	      "carrier": "usps",
         "tracking_number": "967893498757822",
         "metadata": "Order 20512647" 
