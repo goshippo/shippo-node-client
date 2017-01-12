@@ -8,7 +8,7 @@ a tracking number as well as how to register a webhook for tracking updates
 var shippo = require('shippo')('<YOUR_PRIVATE_KEY>');
 
 // example Tracking object for tracking a shipment
-shippo.track.status('usps', '1122334455667788')
+shippo.track.get_status('usps', '1122334455667788')
 .then(function(status) {
 	console.log("Tracking info: %s", JSON.stringify(status, null, 4));
 }, function(err) {

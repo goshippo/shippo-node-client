@@ -5,11 +5,11 @@ var expect = require('chai').expect;
 
 describe('Tracking Resource', function() {
   
-  describe('status', function() {
+  describe('get_status', function() {
 
     it('Sends the correct request', function() {
 
-      shippo.track.status('carrierFoo', 'trackingNumberFoo');
+      shippo.track.get_status('carrierFoo', 'trackingNumberFoo');
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
         url: '/v1/tracks/carrierFoo/trackingNumberFoo/',
