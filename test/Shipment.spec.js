@@ -12,7 +12,7 @@ describe('Shipment Resource', function() {
       shippo.shipment.retrieve('ShipmentIdFoo123');
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/v1/shipments/ShipmentIdFoo123',
+        url: '/shipments/ShipmentIdFoo123',
         data: {}
       });
 
@@ -27,7 +27,7 @@ describe('Shipment Resource', function() {
       shippo.shipment.list();
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/v1/shipments/',
+        url: '/shipments/',
         data: {}
       });
 
@@ -51,7 +51,7 @@ describe('Shipment Resource', function() {
       });
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'POST',
-        url: '/v1/shipments/',
+        url: '/shipments/',
         data: {       
 		    "length": "5",
 		    "width": "5",
@@ -75,7 +75,7 @@ describe('Shipment Resource', function() {
       shippo.shipment.rates("ShipmentIdFoo123");
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/v1/shipments/ShipmentIdFoo123/rates/',
+        url: '/shipments/ShipmentIdFoo123/rates/',
         data: {}
       });
 

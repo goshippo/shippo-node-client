@@ -12,7 +12,7 @@ describe('Tracking Resource', function() {
       shippo.track.get_status('carrierFoo', 'trackingNumberFoo');
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/v1/tracks/carrierFoo/trackingNumberFoo/',
+        url: '/tracks/carrierFoo/trackingNumberFoo/',
         data: {}
       });
 
@@ -31,7 +31,7 @@ describe('Tracking Resource', function() {
       });
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'POST',
-        url: '/v1/tracks/',
+        url: '/tracks/',
         data: {       
 			"carrier": "usps",
       "tracking_number": "967893498757822",

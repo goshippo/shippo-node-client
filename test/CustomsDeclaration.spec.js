@@ -12,7 +12,7 @@ describe('Customs Declaration Resource', function() {
       shippo.customsdeclaration.retrieve('CustomsItemIdFoo123');
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/v1/customs/declarations/CustomsItemIdFoo123',
+        url: '/customs/declarations/CustomsItemIdFoo123',
         data: {}
       });
 
@@ -27,7 +27,7 @@ describe('Customs Declaration Resource', function() {
       shippo.customsdeclaration.list();
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/v1/customs/declarations/',
+        url: '/customs/declarations/',
         data: {}
       });
 
@@ -62,7 +62,7 @@ describe('Customs Declaration Resource', function() {
       });
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'POST',
-        url: '/v1/customs/declarations/',
+        url: '/customs/declarations/',
         data: {       
 			"exporter_reference": "",
 			"importer_reference": "",

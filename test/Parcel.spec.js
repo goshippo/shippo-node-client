@@ -12,7 +12,7 @@ describe('Parcel Resource', function() {
       shippo.parcel.retrieve('ParcelIdFoo123');
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/v1/parcels/ParcelIdFoo123',
+        url: '/parcels/ParcelIdFoo123',
         data: {}
       });
 
@@ -27,7 +27,7 @@ describe('Parcel Resource', function() {
       shippo.parcel.list();
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/v1/parcels/',
+        url: '/parcels/',
         data: {}
       });
 
@@ -51,7 +51,7 @@ describe('Parcel Resource', function() {
       });
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'POST',
-        url: '/v1/parcels/',
+        url: '/parcels/',
         data: {       
 		    "length": "5",
 		    "width": "5",

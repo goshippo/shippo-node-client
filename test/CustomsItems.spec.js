@@ -12,7 +12,7 @@ describe('Customs Items Resource', function() {
       shippo.customsitem.retrieve('CustomsItemIdFoo123');
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/v1/customs/items/CustomsItemIdFoo123',
+        url: '/customs/items/CustomsItemIdFoo123',
         data: {}
       });
 
@@ -27,7 +27,7 @@ describe('Customs Items Resource', function() {
       shippo.customsitem.list();
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/v1/customs/items/',
+        url: '/customs/items/',
         data: {}
       });
 
@@ -52,7 +52,7 @@ describe('Customs Items Resource', function() {
       });
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'POST',
-        url: '/v1/customs/items/',
+        url: '/customs/items/',
         data: {       
 		    "description": "T-Shirt",
 		    "quantity": 2,

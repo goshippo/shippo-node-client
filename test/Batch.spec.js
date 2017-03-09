@@ -15,7 +15,7 @@ describe('Batch Resource', function() {
       shippo.batch.retrieve("batchIdFoo", "2", "creation_failed");
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/v1/batches/batchIdFoo?page=2&object_results=creation_failed',
+        url: '/batches/batchIdFoo?page=2&object_results=creation_failed',
         data: {}
       });
 
@@ -35,7 +35,7 @@ describe('Batch Resource', function() {
       ]);
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'POST',
-        url: '/v1/batches/batchIdFoo/add_shipments/',
+        url: '/batches/batchIdFoo/add_shipments/',
         data: [
           {"shipment": "batchIdFoo1"},
           {"shipment": "batchIdFoo2"},
@@ -60,7 +60,7 @@ describe('Batch Resource', function() {
       ]);
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'POST',
-        url: '/v1/batches/batchIdFoo/remove_shipments/',
+        url: '/batches/batchIdFoo/remove_shipments/',
         data: [
           "batchIdFoo1",
           "batchIdFoo2",
@@ -80,7 +80,7 @@ describe('Batch Resource', function() {
       shippo.batch.purchase('batchIdFoo');
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'POST',
-        url: '/v1/batches/batchIdFoo/purchase/',
+        url: '/batches/batchIdFoo/purchase/',
         data: {}
       });
 
@@ -179,7 +179,7 @@ describe('Batch Resource', function() {
       });
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'POST',
-        url: '/v1/batches/',
+        url: '/batches/',
         data: {
               "default_carrier_account": "078870331023437cb917f5187429b093",
           "default_servicelevel_token": "usps_priority",
