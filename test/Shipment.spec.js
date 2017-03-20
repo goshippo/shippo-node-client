@@ -3,6 +3,8 @@
 var shippo = require('./testUtils').getSpyableShippo();
 var expect = require('chai').expect;
 
+var BASE_PATH = shippo.get('basePath') + 'shipments/'
+
 describe('Shipment Resource', function() {
 
   describe('retrieve', function() {
@@ -12,7 +14,7 @@ describe('Shipment Resource', function() {
       shippo.shipment.retrieve('ShipmentIdFoo123');
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/shipments/ShipmentIdFoo123',
+        url: BASE_PATH + 'ShipmentIdFoo123',
         data: {}
       });
 
@@ -27,7 +29,7 @@ describe('Shipment Resource', function() {
       shippo.shipment.list();
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/shipments/',
+        url: BASE_PATH,
         data: {}
       });
 
@@ -51,7 +53,7 @@ describe('Shipment Resource', function() {
       });
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'POST',
-        url: '/shipments/',
+        url: BASE_PATH,
         data: {       
 		    "length": "5",
 		    "width": "5",
@@ -75,7 +77,7 @@ describe('Shipment Resource', function() {
       shippo.shipment.rates("ShipmentIdFoo123");
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/shipments/ShipmentIdFoo123/rates/',
+        url: BASE_PATH + 'ShipmentIdFoo123/rates/',
         data: {}
       });
 

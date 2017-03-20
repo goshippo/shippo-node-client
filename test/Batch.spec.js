@@ -4,6 +4,7 @@ var shippo = require('./testUtils').getSpyableShippo();
 var expect = require('chai').expect;
 
 var arr = ["a", "b", "c"]
+var BASE_PATH = shippo.get('basePath') + 'batches/'
 console.log(toString.call(arr))
 
 describe('Batch Resource', function() {
@@ -15,7 +16,7 @@ describe('Batch Resource', function() {
       shippo.batch.retrieve("batchIdFoo", "2", "creation_failed");
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/batches/batchIdFoo?page=2&object_results=creation_failed',
+        url: BASE_PATH + 'batchIdFoo?page=2&object_results=creation_failed',
         data: {}
       });
 
@@ -35,7 +36,7 @@ describe('Batch Resource', function() {
       ]);
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'POST',
-        url: '/batches/batchIdFoo/add_shipments/',
+        url: BASE_PATH + 'batchIdFoo/add_shipments/',
         data: [
           {"shipment": "batchIdFoo1"},
           {"shipment": "batchIdFoo2"},
@@ -60,7 +61,7 @@ describe('Batch Resource', function() {
       ]);
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'POST',
-        url: '/batches/batchIdFoo/remove_shipments/',
+        url: BASE_PATH + 'batchIdFoo/remove_shipments/',
         data: [
           "batchIdFoo1",
           "batchIdFoo2",
@@ -80,7 +81,7 @@ describe('Batch Resource', function() {
       shippo.batch.purchase('batchIdFoo');
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'POST',
-        url: '/batches/batchIdFoo/purchase/',
+        url: BASE_PATH + 'batchIdFoo/purchase/',
         data: {}
       });
 
@@ -179,7 +180,7 @@ describe('Batch Resource', function() {
       });
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'POST',
-        url: '/batches/',
+        url: BASE_PATH,
         data: {
               "default_carrier_account": "078870331023437cb917f5187429b093",
           "default_servicelevel_token": "usps_priority",

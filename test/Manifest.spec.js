@@ -3,6 +3,8 @@
 var shippo = require('./testUtils').getSpyableShippo();
 var expect = require('chai').expect;
 
+var BASE_PATH = shippo.get('basePath') + 'manifests/'
+
 describe('Manifest Resource', function() {
 
   describe('retrieve', function() {
@@ -12,7 +14,7 @@ describe('Manifest Resource', function() {
       shippo.manifest.retrieve('ManifestIdFoo123');
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/manifests/ManifestIdFoo123',
+        url: BASE_PATH + 'ManifestIdFoo123',
         data: {}
       });
 
@@ -27,7 +29,7 @@ describe('Manifest Resource', function() {
       shippo.manifest.list();
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/manifests/',
+        url: BASE_PATH,
         data: {}
       });
 
@@ -46,7 +48,7 @@ describe('Manifest Resource', function() {
       });
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'POST',
-        url: '/manifests/',
+        url: BASE_PATH,
         data: {       
 		    "provider": "USPS",
 		    "shipment_date": "2014-05-16T23:59:59Z",

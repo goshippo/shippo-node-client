@@ -3,6 +3,8 @@
 var shippo = require('./testUtils').getSpyableShippo();
 var expect = require('chai').expect;
 
+var BASE_PATH = shippo.get('basePath') + 'addresses/'
+
 describe('Address Resource', function() {
 
   describe('retrieve', function() {
@@ -12,7 +14,7 @@ describe('Address Resource', function() {
       shippo.address.retrieve('addressIdFoo123');
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/addresses/addressIdFoo123',
+        url: BASE_PATH +'addressIdFoo123',
         data: {}
       });
 
@@ -27,7 +29,7 @@ describe('Address Resource', function() {
       shippo.address.list();
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/addresses/',
+        url: BASE_PATH,
         data: {}
       });
 
@@ -42,7 +44,7 @@ describe('Address Resource', function() {
       shippo.address.validate('addressIdFoo123');
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/addresses/addressIdFoo123/validate/',
+        url: BASE_PATH + 'addressIdFoo123/validate/',
         data: {}
       });
 
@@ -70,7 +72,7 @@ describe('Address Resource', function() {
       });
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'POST',
-        url: '/addresses/',
+        url: BASE_PATH,
         data: {       
 			"name": "Laura Behrens Wu",
 			"company": "Shippo",

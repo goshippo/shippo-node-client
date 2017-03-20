@@ -3,6 +3,8 @@
 var shippo = require('./testUtils').getSpyableShippo();
 var expect = require('chai').expect;
 
+var BASE_PATH = shippo.get('basePath') + 'transactions/'
+
 describe('Transaction Resource', function() {
 
   describe('retrieve', function() {
@@ -12,7 +14,7 @@ describe('Transaction Resource', function() {
       shippo.transaction.retrieve('TransactionIdFoo123');
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/transactions/TransactionIdFoo123',
+        url: BASE_PATH + 'TransactionIdFoo123',
         data: {}
       });
 
@@ -27,7 +29,7 @@ describe('Transaction Resource', function() {
       shippo.transaction.list();
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/transactions/',
+        url: BASE_PATH,
         data: {}
       });
 
@@ -45,7 +47,7 @@ describe('Transaction Resource', function() {
       });
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'POST',
-        url: '/transactions/',
+        url: BASE_PATH,
         data: {       
 		    "rate": "67891d0ebaca4973ae2569d759da6139",
 		    "metadata": "Customer ID 123456"
