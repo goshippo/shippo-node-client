@@ -9,7 +9,6 @@ the creation of CustomsItems and CustomsDeclaration objects.
 var shippo = require('shippo')('<YOUR_PRIVATE_KEY>');
 
 var addressFrom  = {
-	"object_purpose":"PURCHASE",
 	"name":"Ms Hippo",
 	"company":"Shippo",
 	"street1":"215 Clayton St.",
@@ -23,7 +22,6 @@ var addressFrom  = {
 
 // example address_to object dict
 var addressTo = {
-	"object_purpose":"PURCHASE",
 	"name":"Mr Hippo",
 	"company":"London Zoo",
 	"street1":"Regent's Park",
@@ -74,7 +72,6 @@ shippo.customsdeclaration.create({
 	// using address.create(..) and parcel.create(..) functions respectively.
 	// adding the async:false makes this call synchronous
 	return shippo.shipment.create({
-		"object_purpose": "PURCHASE",
 		"address_from": addressFrom,
 		"address_to": addressTo,
 		"parcel": parcel,
@@ -102,7 +99,7 @@ shippo.customsdeclaration.create({
 	.then(function(transaction) {
 			console.log("transaction : %s", JSON.stringify(transaction, null, 4));
 			// print label_url and tracking_number
-			if(transaction.object_status == "SUCCESS") {
+			if(transaction.status == "SUCCESS") {
 				console.log("Label URL: %s", transaction.label_url);
 				console.log("Tracking Number: %s", transaction.tracking_number);
 			}else{
