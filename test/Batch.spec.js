@@ -94,16 +94,14 @@ describe('Batch Resource', function() {
     it('Sends the correct request', function() {
 
       shippo.batch.create({
-          "default_carrier_account": "078870331023437cb917f5187429b093",
+        "default_carrier_account": "078870331023437cb917f5187429b093",
         "default_servicelevel_token": "usps_priority",
         "label_filetype": "PDF_4x6",
         "metadata": "Test Batch",
         "batch shipments": [
           {
             "shipment": {    
-              "object_purpose": "PURCHASE",
               "address_from": {
-                "object_purpose": "PURCHASE",
                 "name": "Mr Hippo",
                 "street1": "965 Mission St",
                 "street2": "Ste 201",
@@ -115,7 +113,6 @@ describe('Batch Resource', function() {
                 "email": "mrhippo@goshippo.com"
               },
               "address_to": {
-                "object_purpose": "PURCHASE",
                 "name": "Mrs Hippo",
                 "company": "",
                 "street1": "Broadway 1",
@@ -139,9 +136,7 @@ describe('Batch Resource', function() {
           },
           {
             "shipment": {    
-              "object_purpose": "PURCHASE",
               "address_from": {
-                "object_purpose": "PURCHASE",
                 "name": "Mr Hippo",
                 "street1": "1092 Indian Summer Ct",
                 "city": "San Jose",
@@ -152,7 +147,6 @@ describe('Batch Resource', function() {
                 "email": "mrhippo@goshippo.com"
               },
               "address_to": {
-                "object_purpose": "PURCHASE",
                 "name": "Mrs Hippo",
                 "company": "",
                 "street1": "Broadway 1",
@@ -182,16 +176,14 @@ describe('Batch Resource', function() {
         method: 'POST',
         url: BASE_PATH,
         data: {
-              "default_carrier_account": "078870331023437cb917f5187429b093",
+          "default_carrier_account": "078870331023437cb917f5187429b093",
           "default_servicelevel_token": "usps_priority",
           "label_filetype": "PDF_4x6",
           "metadata": "Test Batch",
           "batch shipments": [
             {
               "shipment": {    
-                "object_purpose": "PURCHASE",
                 "address_from": {
-                  "object_purpose": "PURCHASE",
                   "name": "Mr Hippo",
                   "street1": "965 Mission St",
                   "street2": "Ste 201",
@@ -203,7 +195,6 @@ describe('Batch Resource', function() {
                   "email": "mrhippo@goshippo.com"
                 },
                 "address_to": {
-                  "object_purpose": "PURCHASE",
                   "name": "Mrs Hippo",
                   "company": "",
                   "street1": "Broadway 1",
@@ -227,9 +218,7 @@ describe('Batch Resource', function() {
             },
             {
               "shipment": {    
-                "object_purpose": "PURCHASE",
                 "address_from": {
-                  "object_purpose": "PURCHASE",
                   "name": "Mr Hippo",
                   "street1": "1092 Indian Summer Ct",
                   "city": "San Jose",
@@ -240,7 +229,6 @@ describe('Batch Resource', function() {
                   "email": "mrhippo@goshippo.com"
                 },
                 "address_to": {
-                  "object_purpose": "PURCHASE",
                   "name": "Mrs Hippo",
                   "company": "",
                   "street1": "Broadway 1",

@@ -156,7 +156,7 @@ var timeout = 0;
 function checkBatchStatus(object_id) {
   shippo.batch.retrieve(object_id)
   .then(function(response) {
-    if (response.object_status === "VALID") {
+    if (response.status === "VALID") {
       //Example of adding a shipment to a batch object
       shippo.batch.add(response.object_id, shipments)
       .then(function(addResponse) {
