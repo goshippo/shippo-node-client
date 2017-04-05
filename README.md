@@ -34,7 +34,6 @@ The snippet below demonstrates how to create an address object (a Shippo `Resour
     var shippo = require('shippo')('<YOUR_PRIVATE_KEY>');
     
     shippo.address.create({
-          'object_purpose' : 'PURCHASE',
           'name' : 'Mr Hippo',
           'company' : 'SF Zoo',
           'street1' : '2945 Sloat Blvd',
@@ -58,7 +57,6 @@ the creation of CustomsItems and CustomsDeclaration objects.
 ```js
 
 var addressFrom  = {
-	"object_purpose":"PURCHASE",
 	"name":"Ms Hippo",
 	"company":"Shippo",
 	"street1":"215 Clayton St.",
@@ -72,7 +70,6 @@ var addressFrom  = {
 
 // example address_to object dict
 var addressTo = {
-	"object_purpose":"PURCHASE",
 	"name":"Ms Hippo",
 	"company":"Shippo",
 	"street1":"803 Clayton St.",
@@ -104,11 +101,9 @@ var parcelTwo = {
 };
 
 var shipment = {
-    "object_purpose": "PURCHASE",
     "address_from": addressFrom,
     "address_to": addressTo,
-    "parcel": [parcelOne, parcelTwo],
-    "submission_type": "DROPOFF"
+    "parcels": [parcelOne, parcelTwo],
 };
 
 shippo.transaction.create({
@@ -123,7 +118,7 @@ shippo.transaction.create({
     })
     .then(function(mpsTransactions) {
         mpsTransactions.results.forEach(function(mpsTransaction){
-            if(mpsTransaction.object_status == "SUCCESS") {
+            if(mpsTransaction.status == "SUCCESS") {
                 console.log("Label URL: %s", mpsTransaction.label_url);
                 console.log("Tracking Number: %s", mpsTransaction.tracking_number);
             } else {

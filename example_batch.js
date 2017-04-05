@@ -43,14 +43,14 @@ var myBatch = {
           "phone": "4151234567",
           "email": "mrshippo@goshippo.com"
         },
-        "parcel": {
+        "parcels": {
           "length": "5",
           "width": "5",
           "height": "5",
           "distance_unit": "in",
           "weight": "2",
           "mass_unit": "oz"
-        }
+        }]
       }
     },
     {
@@ -77,14 +77,14 @@ var myBatch = {
           "phone": "4151234567",
           "email": "mrshippo@goshippo.com"
         },
-        "parcel": {
+        "parcels": [{
           "length": "5",
           "width": "5",
           "height": "5",
           "distance_unit": "in",
           "weight": "20",
           "mass_unit": "lb"
-        }
+        }]
       }
     }
   ]
@@ -132,7 +132,7 @@ var shipments = []
 shippo.shipment.create({
   "address_from": addressFrom,
   "address_to": addressTo,
-  "parcel": parcel,
+  "parcels": [parcel],
   "async": false
 }).then(function(shipmentResponse) {
   console.log("Shipment created with object id: %s", shipmentResponse.object_id);

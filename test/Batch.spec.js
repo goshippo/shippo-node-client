@@ -124,14 +124,14 @@ describe('Batch Resource', function() {
                 "phone": "4151234567",
                 "email": "mrshippo@goshippo.com"
               },
-              "parcel": {
+              "parcels": [{
                 "length": "5",
                 "width": "5",
                 "height": "5",
                 "distance_unit": "in",
                 "weight": "2",
                 "mass_unit": "oz"
-              }
+              }]
             }
           },
           {
@@ -158,14 +158,14 @@ describe('Batch Resource', function() {
                 "phone": "4151234567",
                 "email": "mrshippo@goshippo.com"
               },
-              "parcel": {
+              "parcels": [{
                 "length": "5",
                 "width": "5",
                 "height": "5",
                 "distance_unit": "in",
                 "weight": "20",
                 "mass_unit": "lb"
-              }
+              }]
             },
             "carrier_account": "a4391cd4ab974f478f55dc08b5c8e3b3",
             "servicelevel_token": "fedex_2_day"
@@ -206,14 +206,14 @@ describe('Batch Resource', function() {
                   "phone": "4151234567",
                   "email": "mrshippo@goshippo.com"
                 },
-                "parcel": {
+                "parcels": [{
                   "length": "5",
                   "width": "5",
                   "height": "5",
                   "distance_unit": "in",
                   "weight": "2",
                   "mass_unit": "oz"
-                }
+                }]
               }
             },
             {
@@ -240,14 +240,14 @@ describe('Batch Resource', function() {
                   "phone": "4151234567",
                   "email": "mrshippo@goshippo.com"
                 },
-                "parcel": {
+                "parcels": [{
                   "length": "5",
                   "width": "5",
                   "height": "5",
                   "distance_unit": "in",
                   "weight": "20",
                   "mass_unit": "lb"
-                }
+                }]
               },
               "carrier_account": "a4391cd4ab974f478f55dc08b5c8e3b3",
               "servicelevel_token": "fedex_2_day"

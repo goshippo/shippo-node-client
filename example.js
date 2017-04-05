@@ -74,7 +74,7 @@ shippo.customsdeclaration.create({
 	return shippo.shipment.create({
 		"address_from": addressFrom,
 		"address_to": addressTo,
-		"parcel": parcel,
+		"parcels": [parcel],
 		"customs_declaration": customsDeclaration.object_id,
 		"async": false
 	})
