@@ -3,6 +3,8 @@
 var shippo = require('./testUtils').getSpyableShippo();
 var expect = require('chai').expect;
 
+var BASE_PATH = shippo.get('basePath') + 'addresses/'
+
 describe('Address Resource', function() {
 
   describe('retrieve', function() {
@@ -12,7 +14,7 @@ describe('Address Resource', function() {
       shippo.address.retrieve('addressIdFoo123');
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/v1/addresses/addressIdFoo123',
+        url: BASE_PATH +'addressIdFoo123',
         data: {}
       });
 
@@ -27,7 +29,7 @@ describe('Address Resource', function() {
       shippo.address.list();
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/v1/addresses/',
+        url: BASE_PATH,
         data: {}
       });
 
@@ -42,7 +44,7 @@ describe('Address Resource', function() {
       shippo.address.validate('addressIdFoo123');
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/v1/addresses/addressIdFoo123/validate/',
+        url: BASE_PATH + 'addressIdFoo123/validate/',
         data: {}
       });
 
@@ -55,7 +57,6 @@ describe('Address Resource', function() {
     it('Sends the correct request', function() {
 
       shippo.address.create({
-	      "object_purpose": "PURCHASE",
 	      "name": "Laura Behrens Wu",
 	      "company": "Shippo",
 	      "street1": "Clayton St.",
@@ -67,14 +68,12 @@ describe('Address Resource', function() {
 	      "country": "US",
 	      "phone": "+1 555 341 9393",
 	      "email": "laura@goshippo.com",
-	      "ip": "",
 	      "metadata": "Customer ID 123456"
       });
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'POST',
-        url: '/v1/addresses/',
+        url: BASE_PATH,
         data: {       
-			"object_purpose": "PURCHASE",
 			"name": "Laura Behrens Wu",
 			"company": "Shippo",
 			"street1": "Clayton St.",
@@ -86,7 +85,6 @@ describe('Address Resource', function() {
 			"country": "US",
 			"phone": "+1 555 341 9393",
 			"email": "laura@goshippo.com",
-			"ip": "",
 			"metadata": "Customer ID 123456"
   	  	}
       });

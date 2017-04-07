@@ -3,6 +3,8 @@
 var shippo = require('./testUtils').getSpyableShippo();
 var expect = require('chai').expect;
 
+var BASE_PATH = shippo.get('basePath') + 'customs/'
+
 describe('Customs Declaration Resource', function() {
 
   describe('retrieve', function() {
@@ -12,7 +14,7 @@ describe('Customs Declaration Resource', function() {
       shippo.customsdeclaration.retrieve('CustomsItemIdFoo123');
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/v1/customs/declarations/CustomsItemIdFoo123',
+        url: BASE_PATH + 'declarations/CustomsItemIdFoo123',
         data: {}
       });
 
@@ -27,7 +29,7 @@ describe('Customs Declaration Resource', function() {
       shippo.customsdeclaration.list();
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/v1/customs/declarations/',
+        url: BASE_PATH + 'declarations/',
         data: {}
       });
 
@@ -62,7 +64,7 @@ describe('Customs Declaration Resource', function() {
       });
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'POST',
-        url: '/v1/customs/declarations/',
+        url: BASE_PATH + 'declarations/',
         data: {       
 			"exporter_reference": "",
 			"importer_reference": "",

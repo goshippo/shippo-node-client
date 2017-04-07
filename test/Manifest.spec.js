@@ -3,6 +3,8 @@
 var shippo = require('./testUtils').getSpyableShippo();
 var expect = require('chai').expect;
 
+var BASE_PATH = shippo.get('basePath') + 'manifests/'
+
 describe('Manifest Resource', function() {
 
   describe('retrieve', function() {
@@ -12,7 +14,7 @@ describe('Manifest Resource', function() {
       shippo.manifest.retrieve('ManifestIdFoo123');
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/v1/manifests/ManifestIdFoo123',
+        url: BASE_PATH + 'ManifestIdFoo123',
         data: {}
       });
 
@@ -27,7 +29,7 @@ describe('Manifest Resource', function() {
       shippo.manifest.list();
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/v1/manifests/',
+        url: BASE_PATH,
         data: {}
       });
 
@@ -41,15 +43,15 @@ describe('Manifest Resource', function() {
 
       shippo.manifest.create({
 	      "provider": "USPS",
-	      "submission_date": "2014-05-16T23:59:59Z",
+	      "shipment_date": "2014-05-16T23:59:59Z",
 	      "address_from": "28828839a2b04e208ac2aa4945fbca9a"
       });
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'POST',
-        url: '/v1/manifests/',
+        url: BASE_PATH,
         data: {       
 		    "provider": "USPS",
-		    "submission_date": "2014-05-16T23:59:59Z",
+		    "shipment_date": "2014-05-16T23:59:59Z",
 		    "address_from": "28828839a2b04e208ac2aa4945fbca9a"
   	  	}
       });

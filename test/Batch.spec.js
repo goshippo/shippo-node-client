@@ -4,6 +4,7 @@ var shippo = require('./testUtils').getSpyableShippo();
 var expect = require('chai').expect;
 
 var arr = ["a", "b", "c"]
+var BASE_PATH = shippo.get('basePath') + 'batches/'
 console.log(toString.call(arr))
 
 describe('Batch Resource', function() {
@@ -15,7 +16,7 @@ describe('Batch Resource', function() {
       shippo.batch.retrieve("batchIdFoo", "2", "creation_failed");
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/v1/batches/batchIdFoo?page=2&object_results=creation_failed',
+        url: BASE_PATH + 'batchIdFoo?page=2&object_results=creation_failed',
         data: {}
       });
 
@@ -35,7 +36,7 @@ describe('Batch Resource', function() {
       ]);
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'POST',
-        url: '/v1/batches/batchIdFoo/add_shipments/',
+        url: BASE_PATH + 'batchIdFoo/add_shipments/',
         data: [
           {"shipment": "batchIdFoo1"},
           {"shipment": "batchIdFoo2"},
@@ -60,7 +61,7 @@ describe('Batch Resource', function() {
       ]);
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'POST',
-        url: '/v1/batches/batchIdFoo/remove_shipments/',
+        url: BASE_PATH + 'batchIdFoo/remove_shipments/',
         data: [
           "batchIdFoo1",
           "batchIdFoo2",
@@ -80,7 +81,7 @@ describe('Batch Resource', function() {
       shippo.batch.purchase('batchIdFoo');
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'POST',
-        url: '/v1/batches/batchIdFoo/purchase/',
+        url: BASE_PATH + 'batchIdFoo/purchase/',
         data: {}
       });
 
@@ -93,16 +94,14 @@ describe('Batch Resource', function() {
     it('Sends the correct request', function() {
 
       shippo.batch.create({
-          "default_carrier_account": "078870331023437cb917f5187429b093",
+        "default_carrier_account": "078870331023437cb917f5187429b093",
         "default_servicelevel_token": "usps_priority",
         "label_filetype": "PDF_4x6",
         "metadata": "Test Batch",
         "batch shipments": [
           {
             "shipment": {    
-              "object_purpose": "PURCHASE",
               "address_from": {
-                "object_purpose": "PURCHASE",
                 "name": "Mr Hippo",
                 "street1": "965 Mission St",
                 "street2": "Ste 201",
@@ -114,7 +113,6 @@ describe('Batch Resource', function() {
                 "email": "mrhippo@goshippo.com"
               },
               "address_to": {
-                "object_purpose": "PURCHASE",
                 "name": "Mrs Hippo",
                 "company": "",
                 "street1": "Broadway 1",
@@ -126,21 +124,19 @@ describe('Batch Resource', function() {
                 "phone": "4151234567",
                 "email": "mrshippo@goshippo.com"
               },
-              "parcel": {
+              "parcels": [{
                 "length": "5",
                 "width": "5",
                 "height": "5",
                 "distance_unit": "in",
                 "weight": "2",
                 "mass_unit": "oz"
-              }
+              }]
             }
           },
           {
             "shipment": {    
-              "object_purpose": "PURCHASE",
               "address_from": {
-                "object_purpose": "PURCHASE",
                 "name": "Mr Hippo",
                 "street1": "1092 Indian Summer Ct",
                 "city": "San Jose",
@@ -151,7 +147,6 @@ describe('Batch Resource', function() {
                 "email": "mrhippo@goshippo.com"
               },
               "address_to": {
-                "object_purpose": "PURCHASE",
                 "name": "Mrs Hippo",
                 "company": "",
                 "street1": "Broadway 1",
@@ -163,14 +158,14 @@ describe('Batch Resource', function() {
                 "phone": "4151234567",
                 "email": "mrshippo@goshippo.com"
               },
-              "parcel": {
+              "parcels": [{
                 "length": "5",
                 "width": "5",
                 "height": "5",
                 "distance_unit": "in",
                 "weight": "20",
                 "mass_unit": "lb"
-              }
+              }]
             },
             "carrier_account": "a4391cd4ab974f478f55dc08b5c8e3b3",
             "servicelevel_token": "fedex_2_day"
@@ -179,18 +174,16 @@ describe('Batch Resource', function() {
       });
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'POST',
-        url: '/v1/batches/',
+        url: BASE_PATH,
         data: {
-              "default_carrier_account": "078870331023437cb917f5187429b093",
+          "default_carrier_account": "078870331023437cb917f5187429b093",
           "default_servicelevel_token": "usps_priority",
           "label_filetype": "PDF_4x6",
           "metadata": "Test Batch",
           "batch shipments": [
             {
               "shipment": {    
-                "object_purpose": "PURCHASE",
                 "address_from": {
-                  "object_purpose": "PURCHASE",
                   "name": "Mr Hippo",
                   "street1": "965 Mission St",
                   "street2": "Ste 201",
@@ -202,7 +195,6 @@ describe('Batch Resource', function() {
                   "email": "mrhippo@goshippo.com"
                 },
                 "address_to": {
-                  "object_purpose": "PURCHASE",
                   "name": "Mrs Hippo",
                   "company": "",
                   "street1": "Broadway 1",
@@ -214,21 +206,19 @@ describe('Batch Resource', function() {
                   "phone": "4151234567",
                   "email": "mrshippo@goshippo.com"
                 },
-                "parcel": {
+                "parcels": [{
                   "length": "5",
                   "width": "5",
                   "height": "5",
                   "distance_unit": "in",
                   "weight": "2",
                   "mass_unit": "oz"
-                }
+                }]
               }
             },
             {
               "shipment": {    
-                "object_purpose": "PURCHASE",
                 "address_from": {
-                  "object_purpose": "PURCHASE",
                   "name": "Mr Hippo",
                   "street1": "1092 Indian Summer Ct",
                   "city": "San Jose",
@@ -239,7 +229,6 @@ describe('Batch Resource', function() {
                   "email": "mrhippo@goshippo.com"
                 },
                 "address_to": {
-                  "object_purpose": "PURCHASE",
                   "name": "Mrs Hippo",
                   "company": "",
                   "street1": "Broadway 1",
@@ -251,14 +240,14 @@ describe('Batch Resource', function() {
                   "phone": "4151234567",
                   "email": "mrshippo@goshippo.com"
                 },
-                "parcel": {
+                "parcels": [{
                   "length": "5",
                   "width": "5",
                   "height": "5",
                   "distance_unit": "in",
                   "weight": "20",
                   "mass_unit": "lb"
-                }
+                }]
               },
               "carrier_account": "a4391cd4ab974f478f55dc08b5c8e3b3",
               "servicelevel_token": "fedex_2_day"

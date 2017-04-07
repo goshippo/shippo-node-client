@@ -3,6 +3,8 @@
 var shippo = require('./testUtils').getSpyableShippo();
 var expect = require('chai').expect;
 
+var BASE_PATH = shippo.get('basePath') + 'customs/items/'
+
 describe('Customs Items Resource', function() {
 
   describe('retrieve', function() {
@@ -12,7 +14,7 @@ describe('Customs Items Resource', function() {
       shippo.customsitem.retrieve('CustomsItemIdFoo123');
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/v1/customs/items/CustomsItemIdFoo123',
+        url: BASE_PATH + 'CustomsItemIdFoo123',
         data: {}
       });
 
@@ -27,7 +29,7 @@ describe('Customs Items Resource', function() {
       shippo.customsitem.list();
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'GET',
-        url: '/v1/customs/items/',
+        url: BASE_PATH,
         data: {}
       });
 
@@ -52,7 +54,7 @@ describe('Customs Items Resource', function() {
       });
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'POST',
-        url: '/v1/customs/items/',
+        url: BASE_PATH,
         data: {       
 		    "description": "T-Shirt",
 		    "quantity": 2,

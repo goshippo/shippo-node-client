@@ -20,9 +20,7 @@ var myBatch = {
   "batch_shipments": [
     {
       "shipment": {
-        "object_purpose": "PURCHASE",
         "address_from": {
-          "object_purpose": "PURCHASE",
           "name": "Mr Hippo",
           "street1": "965 Mission St",
           "street2": "Ste 201",
@@ -34,7 +32,6 @@ var myBatch = {
           "email": "mrhippo@goshippo.com"
         },
         "address_to": {
-          "object_purpose": "PURCHASE",
           "name": "Mrs Hippo",
           "company": "",
           "street1": "Broadway 1",
@@ -46,21 +43,19 @@ var myBatch = {
           "phone": "4151234567",
           "email": "mrshippo@goshippo.com"
         },
-        "parcel": {
+        "parcels": {
           "length": "5",
           "width": "5",
           "height": "5",
           "distance_unit": "in",
           "weight": "2",
           "mass_unit": "oz"
-        }
+        }]
       }
     },
     {
       "shipment": {
-        "object_purpose": "PURCHASE",
         "address_from": {
-          "object_purpose": "PURCHASE",
           "name": "Mr Hippo",
           "street1": "1092 Indian Summer Ct",
           "city": "San Jose",
@@ -71,7 +66,6 @@ var myBatch = {
           "email": "mrhippo@goshippo.com"
         },
         "address_to": {
-          "object_purpose": "PURCHASE",
           "name": "Mrs Hippo",
           "company": "",
           "street1": "Broadway 1",
@@ -83,21 +77,20 @@ var myBatch = {
           "phone": "4151234567",
           "email": "mrshippo@goshippo.com"
         },
-        "parcel": {
+        "parcels": [{
           "length": "5",
           "width": "5",
           "height": "5",
           "distance_unit": "in",
           "weight": "20",
           "mass_unit": "lb"
-        }
+        }]
       }
     }
   ]
 }
 
 var addressFrom  = {
-  "object_purpose":"PURCHASE",
   "name":"Ms Hippo",
   "company":"Shippo",
   "street1":"215 Clayton St.",
@@ -111,7 +104,6 @@ var addressFrom  = {
 
 // example address_to object dict
 var addressTo = {
-  "object_purpose":"PURCHASE",
   "name":"Mr Hippo",
   "company":"London Zoo",
   "street1":"Regent's Park",
@@ -138,10 +130,9 @@ var parcel = {
 var shipments = []
 
 shippo.shipment.create({
-  "object_purpose": "PURCHASE",
   "address_from": addressFrom,
   "address_to": addressTo,
-  "parcel": parcel,
+  "parcels": [parcel],
   "async": false
 }).then(function(shipmentResponse) {
   console.log("Shipment created with object id: %s", shipmentResponse.object_id);
@@ -165,7 +156,7 @@ var timeout = 0;
 function checkBatchStatus(object_id) {
   shippo.batch.retrieve(object_id)
   .then(function(response) {
-    if (response.object_status === "VALID") {
+    if (response.status === "VALID") {
       //Example of adding a shipment to a batch object
       shippo.batch.add(response.object_id, shipments)
       .then(function(addResponse) {
