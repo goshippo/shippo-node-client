@@ -6,8 +6,6 @@
 
 require('chai');
 
-var when = require('when');
-
 var utils = module.exports = {
 
   getUserShippoKey: function() {
@@ -108,6 +106,3 @@ var utils = module.exports = {
   }())
 
 };
-
-
-
