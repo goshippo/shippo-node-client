@@ -92,7 +92,7 @@ shippo.customsdeclaration.create({
 		rate = rates.results[0];
 		// Purchase the desired rate
 		return shippo.transaction.create({"rate": rate.object_id, "async": false})
-	}, function(err) {
+	}).catch(function(err) {
 		// Deal with an error
 		console.log("There was an error retrieving rates : %s", err);
 	})
@@ -104,14 +104,14 @@ shippo.customsdeclaration.create({
 				console.log("Tracking Number: %s", transaction.tracking_number);
 			}else{
 				//Deal with an error with the transaction
-				console.log("Message: %s", transaction.messages);
+				console.log("Message: %s", JSON.stringify(transaction.messages, null, 2));
 			}
 
-	}, function(err) {
+	}).catch(function(err) {
 		// Deal with an error
 		console.log("There was an error creating transaction : %s", err);
 	});
-},function(err) {
+}).catch(function(err) {
 	// Deal with an error
 	console.log("There was an error creating shipment: %s", err);
 });
