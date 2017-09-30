@@ -31,7 +31,7 @@
   },
   "bugs:": "https://github.com/goshippo/shippo-node-client",
   "engines": {
-    "node": ">= v0.8.0"
+    "node": ">= v0.12.18"
   },
   "main": "lib/shippo.js",
   "devDependencies": {
@@ -39,9 +39,7 @@
     "chai-as-promised": "~4.1.1",
     "mocha": "~2.1.0"
   },
-  "dependencies": {
-    "when": "~2.4.0"
-  },
+  "dependencies": {},
   "scripts": {
     "test": "mocha"
   }

@@ -6,20 +6,17 @@ Shippo is a shipping API that connects you with [multiple shipping carriers](htt
 
 Print a shipping label in 10 mins using our default USPS and DHL Express accounts. No need to register for a carrier account to get started.
 
-You will need to [register for a Shippo account](https://goshippo.com/) to use the Shippo API. It's free to sign up, free to use the API. Only pay to print a live label, test labels are free. 
+You will need to [register for a Shippo account](https://goshippo.com/) to use the Shippo API. It's free to sign up, free to use the API. Only pay to print a live label, test labels are free.
 
 ## Installation:
 You can install this package by running the follwing command:
 ```shell
   npm install shippo
 ```
-This means, you don't actually have to download this repository. If you wish to make modifications to the wrapper, you can clone this repository into your project. 
+This means, you don't actually have to download this repository. If you wish to make modifications to the wrapper, you can clone this repository into your project.
 
 ### Requirements:
-The shippo Node.js has the following dependencies:
-```js
-  npm install when
-```
+The shippo Node.js has no additional dependencies.
 
 ## Usage:
 
@@ -32,7 +29,7 @@ The snippet below demonstrates how to create an address object (a Shippo `Resour
 
 ```js
     var shippo = require('shippo')('<YOUR_PRIVATE_KEY>');
-    
+
     shippo.address.create({
           'name' : 'Mr Hippo',
           'company' : 'SF Zoo',
