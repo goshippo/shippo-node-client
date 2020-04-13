@@ -81,6 +81,10 @@ shippo.customsdeclaration.create({
 
 }, function(err) {
 	// Deal with an error
+	if (err instanceof shippo.error.ShippoAuthenticationError) {
+		console.log("There was an error authenticating against the Shippo API");
+		process.exit(1);
+	}
 	console.log("There was an error creating customs declaration: %s", err);
 })
 .then(function(shipment) {
