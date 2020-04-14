@@ -12,12 +12,12 @@ var utils = module.exports = {
     return process.env.SHIPPO_TEST_API_KEY || ('unittest');
   },
 
-  getSpyableShippo: function() {
+  getSpyableShippo: function(token) {
     // Provide a testable shippo instance
     // That is, with mock-requests built in and hookable
 
     var Shippo = require('../lib/shippo');
-    var shippoInstance = Shippo('fakeAuthToken');
+    var shippoInstance = Shippo(token || 'fakeAuthToken');
 
     shippoInstance.REQUESTS = [];
 
