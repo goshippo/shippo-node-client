@@ -14,10 +14,20 @@ describe('Error', function() {
   });
 
   describe('ShippoError', function() {
+
     it('Generates specific instance depending on error-type', function() {
       expect(Error.ShippoError.generate({ type: 'invalid_request_error' })).to.be.instanceOf(Error.ShippoInvalidRequestError);
       expect(Error.ShippoError.generate({ type: 'api_error' })).to.be.instanceOf(Error.ShippoAPIError);
     });
+
+    it('Populates named parameters', function() {
+      var fields = { code: 400, detail: { stuff: 'is bad' }, message: 'bad stuff', path: '/badpath/' };
+      var e = new Error.ShippoAPIError(fields);
+      for (var k in Object.keys(fields)) {
+        expect(e[k]).to.eql(fields[k]);
+      }
+    })
+
   });
 
 });
