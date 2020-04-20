@@ -11,7 +11,7 @@ var shippo = require('shippo')('<YOUR_PRIVATE_KEY>');
 shippo.track.get_status('usps', '1122334455667788')
 .then(function(status) {
 	console.log("Tracking info: %s", JSON.stringify(status, null, 4));
-}, function(err) {
+}).catch(function(err) {
 	console.log("There was an error retrieving tracking information: %s", err);
 });
 
@@ -26,6 +26,7 @@ var webhookData = {
 shippo.track.create(webhookData)
 .then(function(webhook) {
 	console.log("Webhook response: %s", JSON.stringify(webhook, null, 4));
-}, function(err) {
+})
+.catch(function(err) {
 	console.log("There was an error registering the webhook: %s", err);
 });

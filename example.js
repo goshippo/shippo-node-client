@@ -64,8 +64,15 @@ shippo.customsdeclaration.create({
 	"certify": true,
 	"certify_signer": "Mr. Hippo",
 	"items": [customsItem],
-})
-.then(function(customsDeclaration) {
+}).catch(function(err) {
+	// Deal with an error
+	if (err instanceof shippo.error.ShippoAuthenticationError) {
+		console.log("There was an error authenticating against the Shippo API");
+	} else {
+		console.log("There was an error creating customs declaration: %s", err);
+	}
+	process.exit(1);
+}).then(function(customsDeclaration) {
 	console.log("customs Declaration : %s", JSON.stringify(customsDeclaration, null, 4));
 	// Creating the shipment object. In this example, the objects are directly passed to the
 	// shipment.create method, Alternatively, the Address and Parcel objects could be created
@@ -77,41 +84,36 @@ shippo.customsdeclaration.create({
 		"parcels": [parcel],
 		"customs_declaration": customsDeclaration.object_id,
 		"async": false
-	})
-
-}, function(err) {
-	// Deal with an error
-	console.log("There was an error creating customs declaration: %s", err);
-})
-.then(function(shipment) {
-	console.log("shipment : %s", JSON.stringify(shipment, null, 4));
-	shippo.shipment.rates(shipment.object_id)
-	.then(function(rates) {
-		console.log("rates : %s", JSON.stringify(rates, null, 4));
-		// Get the first rate in the rates results for demo purposes.
-		rate = rates.results[0];
-		// Purchase the desired rate
-		return shippo.transaction.create({"rate": rate.object_id, "async": false})
-	}).catch(function(err) {
-		// Deal with an error
-		console.log("There was an error retrieving rates : %s", err);
-	})
-	.then(function(transaction) {
-			console.log("transaction : %s", JSON.stringify(transaction, null, 4));
-			// print label_url and tracking_number
-			if(transaction.status == "SUCCESS") {
-				console.log("Label URL: %s", transaction.label_url);
-				console.log("Tracking Number: %s", transaction.tracking_number);
-			}else{
-				//Deal with an error with the transaction
-				console.log("Message: %s", JSON.stringify(transaction.messages, null, 2));
-			}
-
-	}).catch(function(err) {
-		// Deal with an error
-		console.log("There was an error creating transaction : %s", err);
 	});
 }).catch(function(err) {
 	// Deal with an error
 	console.log("There was an error creating shipment: %s", err);
+	process.exit(1);
+}).then(function(shipment) {
+	console.log("shipment : %s", JSON.stringify(shipment, null, 4));
+	return shippo.shipment.rates(shipment.object_id);
+}).catch(function(err) {
+	// Deal with an error
+	console.log("There was an error retrieving rates : %s", err);
+	process.exit(1);
+}).then(function(rates) {
+	console.log("rates : %s", JSON.stringify(rates, null, 4));
+	// Get the first rate in the rates results for demo purposes.
+	rate = rates.results[0];
+	// Purchase the desired rate
+	return shippo.transaction.create({"rate": rate.object_id, "async": false})
+}).catch(function(err) {
+	// Deal with an error
+	console.log("There was an error creating transaction : %s", err);
+	process.exit(1);
+}).then(function(transaction) {
+	console.log("transaction : %s", JSON.stringify(transaction, null, 4));
+	// print label_url and tracking_number
+	if(transaction.status == "SUCCESS") {
+		console.log("Label URL: %s", transaction.label_url);
+		console.log("Tracking Number: %s", transaction.tracking_number);
+	}else{
+		//Deal with an error with the transaction
+		console.log("Message: %s", JSON.stringify(transaction.messages, null, 2));
+	}
 });

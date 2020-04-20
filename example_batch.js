@@ -134,59 +134,54 @@ shippo.shipment.create({
   "address_to": addressTo,
   "parcels": [parcel],
   "async": false
+}).catch(function(shipmentErr) {
+  console.log("There was an error creating a shipment: %s", shipmentErr);
 }).then(function(shipmentResponse) {
   console.log("Shipment created with object id: %s", shipmentResponse.object_id);
   shipments.push({"shipment" : shipmentResponse.object_id});
   // example of creating a batch shipment
-  shippo.batch.create(myBatch)
-  .then(function(createResponse) {
-    console.log("Batch shipment creation response: %s", JSON.stringify(createResponse, null, 4));
-    //Poll a batch object to check for a VALID status before adding/removing shipments or purchasing
-    checkBatchStatus(createResponse.object_id);
-  }, function(createErr) {
-      console.log("There was an error creating the batch shipment: %s", createErr);
-  });
-}, function(shipmentErr) {
-  console.log("There was an error creating a shipment: %s", shipmentErr);
-});
+  return shippo.batch.create(myBatch);
+}).catch(function(createErr) {
+  console.log("There was an error creating the batch shipment: %s", createErr);
+}).then(function(createResponse) {
+  console.log("Batch shipment creation response: %s", JSON.stringify(createResponse, null, 4));
+  //Poll a batch object to check for a VALID status before adding/removing shipments or purchasing
+  checkBatchStatus(createResponse.object_id);
+  
 
 //Using Batch::retrieve to poll for the batch's VALID status is done for demo purposes only
 //In practice, it is recommended to register a Batch Create webhook for status updates 
 var timeout = 0;
 function checkBatchStatus(object_id) {
   shippo.batch.retrieve(object_id)
-  .then(function(response) {
+  .catch(function(retrieveErr) {
+    console.log("There was an error retrieving the batch information: %s", retrieveErr);
+  }).then(function(response) {
     if (response.status === "VALID") {
       //Example of adding a shipment to a batch object
       shippo.batch.add(response.object_id, shipments)
-      .then(function(addResponse) {
+      .catch(function(addErr) {
+        console.log("There was an error adding shipments to the batch: %s", addErr);
+      }).then(function(addResponse) {
         console.log("Response from adding shipments to batch: %s", JSON.stringify(addResponse, null, 4));
          //Example of removing a shipment from a batch object
-        shippo.batch.remove(addResponse.object_id, [addResponse.batch_shipments.results[0].object_id])
-        .then(function(removeResponse) {
-          console.log("Response from removing shipments from the batch: %s", JSON.stringify(removeResponse, null, 4));
-          //Example of purchasing a batch shipment
-          shippo.batch.purchase(response.object_id)
-          .then(function(purchaseResponse) {
-              console.log("Batch shipment purchase response: %s", JSON.stringify(purchaseResponse, null, 4));
-          }, function(purchaseErr) {
-              console.log("There was an error purchasing the batch shipment: %s", purchaseErr);
-          });
-        }, function(removeErr) {
-          console.log("There was an error removing shipments from the batch: %s", removeErr);
-        });
-      }, function(addErr) {
-        console.log("There was an error adding shipments to the batch: %s", addErr);
+        return shippo.batch.remove(addResponse.object_id, [addResponse.batch_shipments.results[0].object_id]);
+      }).catch(function(removeErr) {
+        console.log("There was an error removing shipments from the batch: %s", removeErr);
+      }).then(function(removeResponse) {
+        console.log("Response from removing shipments from the batch: %s", JSON.stringify(removeResponse, null, 4));
+        //Example of purchasing a batch shipment
+        return shippo.batch.purchase(response.object_id);
+      }).catch(function(purchaseErr) {
+        console.log("There was an error purchasing the batch shipment: %s", purchaseErr);
+      }).then(function(purchaseResponse) {
+        console.log("Batch shipment purchase response: %s", JSON.stringify(purchaseResponse, null, 4));
       });      
     } else if (timeout < BATCH_WAIT_TIMEOUT){
       timeout = timeout + POLLING_INTERVAL;
       setTimeout(checkBatchStatus, POLLING_INTERVAL, response.object_id);
-    } else{
+    } else {
       console.log("Batch purchase timed out on batch %s", response.object_id);
     }
-  }, function(err) {
-    console.log("There was an error retrieving the batch information: %s", retrieveErr);
   });
 }
-
-
