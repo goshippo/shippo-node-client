@@ -41,7 +41,7 @@ describe('Order Resource', function() {
 
     it('Sends the correct request', function() {
 
-      const payload = {
+      var payload = {
         "placed_at": "2014-05-16T23:59:59Z",
         "to_address": {
           "name": "Laura Behrens Wu",

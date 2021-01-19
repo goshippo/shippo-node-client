@@ -54,16 +54,37 @@ var customsItem = {
 	"value_amount":"20",
 	"value_currency":"USD",
 	"origin_country":"US",
+	"eccn_ear99": "3A001"
 }
 
 // Creating the CustomsDeclaration
 // (CustomsDeclaration are NOT required for domestic shipments)
 shippo.customsdeclaration.create({
-	"contents_type": "MERCHANDISE",
-	"non_delivery_option": "RETURN",
-	"certify": true,
 	"certify_signer": "Mr. Hippo",
+	"certify": true,
 	"items": [customsItem],
+	"non_delivery_option": "RETURN",
+	"contents_type": "MERCHANDISE",
+	"contents_explanation": "stuff",
+	"exporter_reference": "Exporter Reference",
+	"importer_reference": "",
+	"invoice": "Invoice",
+	"license": "License",
+	"certificate": "Certificate",
+	"notes": "Notes",
+	"eel_pfc": "NOEEI_30_37_a",
+	"aes_itn": "X20180426506889",
+	"incoterm": "DDP",
+	"b13a_filing_option": "FILED_ELECTRONICALLY",
+	"b13a_number": "AB1234567890123",
+	"invoiced_charges": {
+		"currency": "USD",
+		"total_shipping": "1.23",
+		"total_taxes": "4.56",
+		"total_duties": "78.90",
+		"other_fees": "9.87"
+	},
+	"metadata": "test customsDeclaration"
 }).catch(function(err) {
 	// Deal with an error
 	if (err instanceof shippo.error.ShippoAuthenticationError) {
