@@ -40,32 +40,25 @@ describe('Customs Items Resource', function() {
   describe('create', function() {
 
     it('Sends the correct request', function() {
+      var payload = {
+        "description": "T-Shirt",
+        "quantity": 2,
+        "net_weight": "400",
+        "mass_unit": "g",
+        "value_amount": "20",
+        "value_currency": "USD",
+        "tariff_number": "",
+        "origin_country": "US",
+        "sku_code": "AB123",
+        "eccn_ear99": "0A979",
+        "metadata": "Order ID #123123"
+      };
 
-      shippo.customsitem.create({
-	      "description": "T-Shirt",
-	      "quantity": 2,
-	      "net_weight": "400",
-	      "mass_unit": "g",
-	      "value_amount": "20",
-	      "value_currency": "USD",
-	      "tariff_number": "",
-	      "origin_country": "US",
-	      "metadata": "Order ID #123123"
-      });
+      shippo.customsitem.create(payload);
       expect(shippo.LAST_REQUEST).to.deep.equal({
         method: 'POST',
         url: BASE_PATH,
-        data: {       
-		    "description": "T-Shirt",
-		    "quantity": 2,
-		    "net_weight": "400",
-		    "mass_unit": "g",
-		    "value_amount": "20",
-		    "value_currency": "USD",
-		    "tariff_number": "",
-		    "origin_country": "US",
-		    "metadata": "Order ID #123123"
-  	  	}
+        data: payload
       });
 
     });
