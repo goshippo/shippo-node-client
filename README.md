@@ -9,7 +9,7 @@ Print a shipping label in 10 mins using our default USPS and DHL Express account
 You will need to [register for a Shippo account](https://goshippo.com/) to use the Shippo API. It's free to sign up, free to use the API. Only pay to print a live label, test labels are free.
 
 ## Installation:
-You can install this package by running the follwing command:
+You can install this package by running the following command:
 ```shell
   npm install shippo
 ```

@@ -57,6 +57,7 @@ var customsItem = {
 	"eccn_ear99": "3A001"
 }
 
+var carrier_account;
 // Creating the CustomsDeclaration
 // (CustomsDeclaration are NOT required for domestic shipments)
 shippo.customsdeclaration.create({
@@ -121,6 +122,9 @@ shippo.customsdeclaration.create({
 	console.log("rates : %s", JSON.stringify(rates, null, 4));
 	// Get the first rate in the rates results for demo purposes.
 	rate = rates.results[0];
+	if (rates.results[0]) {
+		carrier_account = rates.results[0].carrier_account;
+	}
 	// Purchase the desired rate
 	return shippo.transaction.create({"rate": rate.object_id, "async": false})
 }).catch(function(err) {
@@ -137,4 +141,25 @@ shippo.customsdeclaration.create({
 		//Deal with an error with the transaction
 		console.log("Message: %s", JSON.stringify(transaction.messages, null, 2));
 	}
+	var requested_start_time = new Date();
+	requested_start_time.setDate(requested_start_time.getDate() + 1);
+	var requested_end_time = new Date();
+	requested_end_time.setDate(requested_start_time.getDate() + 1.1);
+	return shippo.pickup.create({
+		carrier_account,
+		location: {
+			building_location_type: 'Knock on Door',
+			address: addressFrom,
+		},
+		transactions: [transaction.object_id],
+		requested_start_time,
+		requested_end_time,
+		is_test: false
+	})
+}).catch(function(err) {
+	// Deal with an error
+	console.log("There was an error creating a pickup : %s", err);
+	process.exit(1);
+}).then(function(pickups) {
+	console.log("pickups : %s", JSON.stringify(pickups, null, 4));
 });
