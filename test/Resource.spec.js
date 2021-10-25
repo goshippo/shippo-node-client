@@ -64,4 +64,44 @@ describe('Resourcetest', function() {
 
     });
 
+    describe.only('_responseHandler', function() {
+
+        describe('when a json parse error is caught', function() {
+
+            it('should return a generic error with full error data', function() {
+                var expectedErrorData = {
+                    detail: '',
+                    path: '/testing',
+                    statusCode: 429,
+                    message: 'Invalid JSON received from the Shippo API',
+                    type: 'ShippoAPIError'
+                };
+
+                var fakeRequest = {
+                    path: '/testing',
+                };
+
+                shippo = getSpyableShippo({ oauthToken: 'mockOauthToken' });
+                const responseCallback = shippo.address._responseHandler(fakeRequest, function(error, _) {
+                    for (var k in Object.keys(error)) {
+                        expect(expectedErrorData[k]).to.eql(error[k]);
+                    }
+                });
+
+                responseCallback({
+                    statusCode: 429,
+                    setEncoding: function() {},
+                    on: function (eventName, eventCallback) {
+                        if (eventName === 'end') {
+                            eventCallback();
+                        }
+                    },
+                });
+
+            });
+
+        });
+
+    });
+
 });
