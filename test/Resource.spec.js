@@ -64,7 +64,7 @@ describe('Resourcetest', function() {
 
     });
 
-    describe.only('_responseHandler', function() {
+    describe('_responseHandler', function() {
 
         describe('when a json parse error is caught', function() {
 
