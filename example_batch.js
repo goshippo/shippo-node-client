@@ -43,14 +43,14 @@ var myBatch = {
           "phone": "4151234567",
           "email": "mrshippo@goshippo.com"
         },
-        "parcels": {
+        "parcels": [{
           "length": "5",
           "width": "5",
           "height": "5",
           "distance_unit": "in",
           "weight": "2",
           "mass_unit": "oz"
-        }}
+        }]}
       
     },
     {
