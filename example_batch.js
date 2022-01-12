@@ -50,8 +50,7 @@ var myBatch = {
           "distance_unit": "in",
           "weight": "2",
           "mass_unit": "oz"
-        }]}
-      
+        }]}      
     },
     {
       "shipment": {
