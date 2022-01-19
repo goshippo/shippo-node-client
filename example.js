@@ -122,7 +122,7 @@ shippo.customsdeclaration.create({
 }).then(function(rates) {
 	console.log("rates : %s", JSON.stringify(rates, null, 4));
 	try {
-		const filteredRates = rates.results.filter(rate => rate.provider.toUpperCase().includes('USPS') || rate.provider.toUpperCase().includes('DHL Express'));
+		const filteredRates = rates.results.filter(rate => rate.provider.toUpperCase().includes('USPS') || rate.provider.toUpperCase().includes('DHL EXPRESS'));
 		transactionCanBePickedUp = true;
 		rate = filteredRates[0];
 		carrier_account = rate.carrier_account;
