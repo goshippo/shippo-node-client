@@ -43,15 +43,14 @@ var myBatch = {
           "phone": "4151234567",
           "email": "mrshippo@goshippo.com"
         },
-        "parcels": {
+        "parcels": [{
           "length": "5",
           "width": "5",
           "height": "5",
           "distance_unit": "in",
           "weight": "2",
           "mass_unit": "oz"
-        }]
-      }
+        }]}      
     },
     {
       "shipment": {
@@ -147,7 +146,7 @@ shippo.shipment.create({
   console.log("Batch shipment creation response: %s", JSON.stringify(createResponse, null, 4));
   //Poll a batch object to check for a VALID status before adding/removing shipments or purchasing
   checkBatchStatus(createResponse.object_id);
-  
+});
 
 //Using Batch::retrieve to poll for the batch's VALID status is done for demo purposes only
 //In practice, it is recommended to register a Batch Create webhook for status updates 
@@ -185,3 +184,4 @@ function checkBatchStatus(object_id) {
     }
   });
 }
+

@@ -1,3 +1,6 @@
+1.7.0 Jan 18, 2022
+- add pickup + example
+
 1.6.0 Jan 20, 2021
 - included additional fields for CustomsItems and CustomsDeclarations in the tests and example
 

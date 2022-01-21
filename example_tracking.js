@@ -17,8 +17,8 @@ shippo.track.get_status('usps', '1122334455667788')
 
 // example object for registering a webhook for tracking shipments
 var webhookData = {
-	"carrier":"usps",
-	"tracking_number":"1122334455667788",
+	"carrier":"shippo",
+	"tracking_number":"SHIPPO_TRANSIT",
 	"metadata": "test order"
 }
 

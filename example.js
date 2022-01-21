@@ -57,6 +57,8 @@ var customsItem = {
 	"eccn_ear99": "3A001"
 }
 
+var carrier_account;
+let transactionCanBePickedUp = false;
 // Creating the CustomsDeclaration
 // (CustomsDeclaration are NOT required for domestic shipments)
 shippo.customsdeclaration.create({
@@ -119,8 +121,18 @@ shippo.customsdeclaration.create({
 	process.exit(1);
 }).then(function(rates) {
 	console.log("rates : %s", JSON.stringify(rates, null, 4));
-	// Get the first rate in the rates results for demo purposes.
-	rate = rates.results[0];
+	try {
+		const filteredRates = rates.results.filter(rate => rate.provider.toUpperCase().includes('USPS') || rate.provider.toUpperCase().includes('DHL EXPRESS'));
+		transactionCanBePickedUp = true;
+		rate = filteredRates[0];
+		carrier_account = rate.carrier_account;
+	} catch (err) {
+		// Get the first rate in the rates results for demo purposes.
+		rate = rates.results[0];
+		if (rates.results[0]) {
+			carrier_account = rates.results[0].carrier_account;
+		}
+	}
 	// Purchase the desired rate
 	return shippo.transaction.create({"rate": rate.object_id, "async": false})
 }).catch(function(err) {
@@ -136,5 +148,39 @@ shippo.customsdeclaration.create({
 	}else{
 		//Deal with an error with the transaction
 		console.log("Message: %s", JSON.stringify(transaction.messages, null, 2));
+	}
+	if (transactionCanBePickedUp) {			
+		var requested_start_time = new Date();
+		requested_start_time.setDate(requested_start_time.getDate() + 1);
+		var requested_end_time = new Date();
+		requested_end_time.setDate(requested_start_time.getDate() + 1.1);
+		return shippo.pickup.create({
+			carrier_account,
+			location: {
+				building_location_type: 'Knock on Door',
+				address: addressFrom,
+			},
+			transactions: [transaction.object_id],
+			requested_start_time,
+			requested_end_time,
+			is_test: false
+		})
+	}
+	return false;
+}).catch(function(err) {
+	if (err.detail && err.detail.messages) {
+		err.detail.messages.forEach(message => {
+			if(message.includes('You have already requested')) {
+				console.log("There is a pickup already scheduled for this address and date");
+				process.exit(1);
+			}
+		});		
+	}
+	// Deal with an error
+	console.log("There was an error creating a pickup : %s", err);
+	process.exit(1);
+}).then(function(pickups) {
+	if (transactionCanBePickedUp) {
+		console.log("pickups : %s", JSON.stringify(pickups, null, 4));
 	}
 });
