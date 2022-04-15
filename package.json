@@ -1,8 +1,8 @@
 {
   "name": "@pdqdev/pdq-shippo",
-  "version": "1.7.0",
+  "version": "1.7.2",
   "description": "A node client for connecting with over 20 shipping carriers and consolidators via a single integration using Shippo API. Support for shipping rates, buying and printing labels, tracking as well as some carrier specific functionality such as signature required, adult signature confirmation, certified mail, delivery confirmation and many others.",
-  "homepage": "https://github.com/goshippo/shippo-node-client",
+  "homepage": "https://github.com/prettydamnquick/shippo-node-client#readme",
   "keywords": [
     "api",
     "ups",
@@ -15,7 +15,7 @@
     "tracking",
     "address"
   ],
-  "author": "Shippo <tech-admin@goshippo.com> (https://goshippo.com/)",
+  "author": "",
   "contributors": [
     "Tobias Schottdorf",
     "Eyoel Asfaw",
@@ -27,13 +27,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/goshippo/shippo-node-client"
+    "url": "https://github.com/prettydamnquick/shippo-node-client.git"
   },
-  "bugs:": "https://github.com/goshippo/shippo-node-client",
+  "bugs:": "https://github.com/prettydamnquick/shippo-node-client/issues",
   "engines": {
     "node": ">= v0.12.18"
   },
   "main": "lib/shippo.js",
+  "types": "lib/index.d.ts",
   "devDependencies": {
     "chai": "~1.10.0",
     "chai-as-promised": "~4.1.1",
