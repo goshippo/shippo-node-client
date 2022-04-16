@@ -38,10 +38,12 @@
   "devDependencies": {
     "chai": "~1.10.0",
     "chai-as-promised": "~4.1.1",
-    "mocha": "~2.1.0"
+    "mocha": "~2.1.0",
+    "prettier": "^2.6.2"
   },
   "dependencies": {},
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "pretty": "prettier --write \"lib/**/*.js\""
   }
 }
