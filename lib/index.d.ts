@@ -105,6 +105,24 @@ declare namespace Shippo {
     validate?: boolean | undefined;
   }
 
+  // https://platform-api-docs.goshippo.com/#operation/idOfRegisterMerchantEndpoint
+  interface Merchant {
+    email: string;
+    first_name: string;
+    last_name: string;
+    merchant_name: string;
+    object_created: string; //date-time
+    object_id: string;
+    object_updated: string; //date-time
+  }
+
+  interface CreateMerchantRequest {
+    email: string;
+    first_name: string;
+    last_name: string;
+    merchant_name: string;
+  }
+
   interface Shippo {
     shipment: {
       create: (request: CreateShipmentRequest) => Promise<Shipment>;
@@ -112,6 +130,9 @@ declare namespace Shippo {
     address: {
       create: (request: CreateAddressRequest) => Promise<Address>;
     };
+    merchant: {
+      create: (request: CreateMerchantRequest) => Promise<Merchant>;
+    }
   }
 }
 
