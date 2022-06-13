@@ -29,3 +29,16 @@ jobs:
       - run: npm ci
       - run: npm run build --if-present
       - run: npm test
+      
+      - name: Send a Slack notification saying if tests are passing/failing for a given Node version
+        shell: bash
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          conclusion=${{ steps.tests.conclusion }}
+          if [[ "$conclusion" == "success" ]]; then
+            message="✅ shipoo-node-client SDK Test succeeded for node ${{ matrix.node-version }}"
+          else
+            message="❌ shipoo-node-client SDK Test failed for node ${{ matrix.node-version }}"
+          fi
+          curl -X POST --data-urlencode "payload={\"text\": \"$message\", \"link_names\": 1}" $SLACK_WEBHOOK_URL 
