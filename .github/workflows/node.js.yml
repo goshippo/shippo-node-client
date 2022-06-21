@@ -36,6 +36,8 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: |
           conclusion=${{ steps.tests.conclusion }}
+          echo conclusion
+          echo $conclusion
           if [[ "$conclusion" == "success" ]]; then
             message="✅ shipoo-node-client SDK Test succeeded for node ${{ matrix.node-version }}"
           else
