@@ -10,7 +10,7 @@ on:
     - release/*    
    pull_request:
     branches:
-    - main
+    - master
     
   # Run the tests for the default branch [master] every Monday 3:00 pm UTC time (8:00 am PST)
    schedule:
