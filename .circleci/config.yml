@@ -1,5 +1,6 @@
 orbs: # declare what orbs we are going to use
     node: circleci/node@4.2.1 # the node orb provides common node-related configuration
+    snyk: snyk/snyk@1.1.2
 
 # Use the latest 2.1 version of CircleCI pipeline process engine.
 # See: https://circleci.com/docs/2.0/configuration-reference
@@ -20,7 +21,7 @@ jobs:
 
         steps:
             - checkout
-            - run: 
+            - run:
                   name: Updating System
                   command: sudo apt-get update
             # Install the latest npm - the node Orb takes care of it
@@ -30,6 +31,16 @@ jobs:
                   app-dir: ~/repo
                   cache-path: node_modules
                   override-ci-command: npm i
-            - run: 
+            - run:
                   name: Test
                   command: npm run test
+            - snyk/scan:
+                  monitor-on-build: false
+
+workflows:
+    version: 2
+    test-and-scan:
+        jobs:
+        - build:
+            context:
+              - snyk
