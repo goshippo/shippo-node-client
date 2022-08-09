@@ -1,0 +1,56 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node.js CI
+
+on:
+   push:
+    branches:
+    - master
+    - release/*    
+   pull_request:
+    branches:
+    - master
+    
+  # Run the tests for the default branch [master] every Monday 3:00 pm UTC time (8:00 am PST)
+   schedule:
+    - cron: "0 15 * * 1"
+
+  # Run the tests by clicking a button in GitHub's UI
+   workflow_dispatch: 
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build --if-present
+      - id: test
+        name: Run the tests
+        run: npm test
+      - name: Send a Slack notification saying if tests are passing/failing for a given node-version 
+        if: always()
+        shell: bash
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          conclusion=${{ steps.test.conclusion }}
+          if [[ "$conclusion" == "success" ]]; then
+            message="✅ NodeJS SDK Test succeeded [Env: PROD, NodeJS version: ${{ matrix.node-version }}]"
+          else
+            message="❌ NodeJS SDK Test failed [Env: PROD, NodeJS version: ${{ matrix.node-version }}]"
+          fi
+          curl -X POST --data-urlencode "payload={\"text\": \"$message\", \"link_names\": 1}" $SLACK_WEBHOOK_URL
