@@ -1,4 +1,14 @@
 # Shippo Node.js API wrapper
+
+---
+
+:warning: **We do not actively maintain these libraries** <br>
+However, you can use them as a starting point and update them for your needs and future changes to our APIs.<br>
+You can use our [Open API Specification](https://docs.goshippo.com/shippoapi/public-api/) to build your own library using tools like the [OpenAPI Generator](https://openapi-generator.tech/) and [Swagger Codegen](https://swagger.io/tools/swagger-codegen/).
+
+---
+
+
 [![npm version](https://badge.fury.io/js/shippo.svg)](https://badge.fury.io/js/shippo)
 [![Build Status](https://travis-ci.org/goshippo/shippo-node-client.svg?branch=add-travis-ci)](https://travis-ci.org/goshippo/shippo-node-client)
 
